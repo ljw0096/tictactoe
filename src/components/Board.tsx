@@ -1,31 +1,24 @@
 import Square from "./Square"
-import { useState } from "react"
-import { calculateWinner } from "../utils/calculateWinner"
 
-const Board = () => {
-  const [state, setState] = useState({ squares: Array(9).fill(null), xIsNext: true })
-  const winner = calculateWinner(state.squares)
-  let status = winner ? `Winner: ${winner}` : `Next Player: ${state.xIsNext ? "X" : "O"}`
+type SquareType = "X" | "O" | null
 
-  const handleClick = (i: number) => {
-    const squares = state.squares.slice()
-    if (calculateWinner(squares) || squares[i]) return
-    squares[i] = state.xIsNext ? "X" : "O"
-    setState({ ...state, squares, xIsNext: !state.xIsNext })
-  }
+interface Props {
+  squares: SquareType[]
+  onClick: (i: number) => void
+}
 
+const Board = ({ squares, onClick }: Props) => {
   const renderSquare = (i: number) => (
     <Square
-      value={state.squares[i]}
+      value={squares[i]}
       onClick={() => {
-        handleClick(i)
+        onClick(i)
       }}
     />
   )
 
   return (
     <div>
-      <div className="status">{status}</div>
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
