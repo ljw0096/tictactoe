@@ -2,13 +2,14 @@ import Square from "./Square"
 import { useState } from "react"
 
 const Board = () => {
-  const [state, setState] = useState({ squares: Array(9).fill(null) })
-  const status = "Next player: X"
+  const [state, setState] = useState({ squares: Array(9).fill(null), xIsNext: true })
+
   const handleClick = (i: number) => {
     const squares = state.squares.slice()
-    squares[i] = "X"
-    setState({ ...state, squares })
+    squares[i] = state.xIsNext ? "X" : "O"
+    setState({ ...state, squares, xIsNext: !state.xIsNext })
   }
+
   const renderSquare = (i: number) => (
     <Square
       value={state.squares[i]}
@@ -17,9 +18,10 @@ const Board = () => {
       }}
     />
   )
+
   return (
     <div>
-      <div className="status">{status}</div>
+      <div className="status">Next player: {state.xIsNext ? "X" : "O"}</div>
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
