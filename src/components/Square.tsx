@@ -1,12 +1,11 @@
-import { useState } from "react"
+interface Props {
+  value: "X" | "O" | null
+  onClick: () => void
+}
 
-const Square = () => {
-  const [value, setValue] = useState("")
-  const handleClick = () => {
-    setValue("X")
-  }
+const Square = ({ value, onClick }: Props) => {
   return (
-    <button className="square" onClick={handleClick}>
+    <button className="square" onClick={onClick}>
       {value}
     </button>
   )
