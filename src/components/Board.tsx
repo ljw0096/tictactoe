@@ -1,11 +1,15 @@
 import Square from "./Square"
 import { useState } from "react"
+import { calculateWinner } from "../utils/calculateWinner"
 
 const Board = () => {
   const [state, setState] = useState({ squares: Array(9).fill(null), xIsNext: true })
+  const winner = calculateWinner(state.squares)
+  let status = winner ? `Winner: ${winner}` : `Next Player: ${state.xIsNext ? "X" : "O"}`
 
   const handleClick = (i: number) => {
     const squares = state.squares.slice()
+    if (calculateWinner(squares) || squares[i]) return
     squares[i] = state.xIsNext ? "X" : "O"
     setState({ ...state, squares, xIsNext: !state.xIsNext })
   }
@@ -21,7 +25,7 @@ const Board = () => {
 
   return (
     <div>
-      <div className="status">Next player: {state.xIsNext ? "X" : "O"}</div>
+      <div className="status">{status}</div>
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
