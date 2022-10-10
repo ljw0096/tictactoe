@@ -1,6 +1,7 @@
 import Board from "./Board"
 import { useState } from "react"
 import { calculateWinner } from "../utils/calculateWinner"
+import GameHistory from "./GameHistory"
 
 const Game = () => {
   const [state, setState] = useState({
@@ -29,7 +30,6 @@ const Game = () => {
       xIsNext: !state.xIsNext,
     })
   }
-
   const jumpTo = (step: number) => {
     setState({
       ...state,
@@ -38,6 +38,7 @@ const Game = () => {
     })
   }
 
+
   return (
     <div className="game">
       <div className="game-board">
@@ -45,16 +46,7 @@ const Game = () => {
       </div>
       <div className="game-info">
         <div>{status}</div>
-        <ol>
-          {state.history.map((step, move) => {
-            const desc = move ? `Go to move #${move}` : `Go to game start`
-            return (
-              <li key={move}>
-                <button onClick={() => jumpTo(move)}>{desc}</button>
-              </li>
-            )
-          })}
-        </ol>
+        <GameHistory history={state.history} jumpTo={jumpTo} />
       </div>
     </div>
   )
