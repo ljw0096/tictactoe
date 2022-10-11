@@ -1,3 +1,4 @@
+import { createThreeByThreeBoard } from "../utils/createThreeByThreeBoard"
 import Square from "./Square"
 
 type SquareType = "X" | "O" | null
@@ -10,10 +11,10 @@ interface Props {
 const Board = ({ squares, onClick }: Props) => {
   return (
     <div>
-      {[0, 1, 2].map((row) => (
-        <div key={row} className="board-row">
-          {squares.slice(row * 3, row * 3 + 3).map((s, i) => (
-            <Square key={row * 3 + i} value={s} onClick={() => onClick(row * 3 + i)} />
+      {createThreeByThreeBoard(squares).map((row, rowIdx) => (
+        <div key={rowIdx} className="board-row">
+          {row.map((value, index) => (
+            <Square value={value} onClick={() => onClick(rowIdx * 3 + index)} />
           ))}
         </div>
       ))}
