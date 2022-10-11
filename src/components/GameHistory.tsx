@@ -1,4 +1,6 @@
+import { useState } from "react"
 import { HistoryType } from "../interfaces"
+import HistoryList from "./HistoryList"
 
 interface Props {
   history: HistoryType[]
@@ -6,17 +8,13 @@ interface Props {
 }
 
 const GameHistory = ({ history, jumpTo }: Props) => {
+  const [toggle, setToggle] = useState(true)
+
   return (
-    <ol>
-      {history.map(({ squareType, squareNumber }, move) => {
-        const desc = move ? `'${squareType}' player put on ${squareNumber}` : `Go to game start`
-        return (
-          <li key={move}>
-            <button onClick={() => jumpTo(move)}>{desc}</button>
-          </li>
-        )
-      })}
-    </ol>
+    <>
+      <button onClick={() => setToggle(!toggle)}>toggle</button>
+      <HistoryList history={history} jumpTo={jumpTo} reverse={toggle} />
+    </>
   )
 }
 

@@ -13,6 +13,7 @@ const Game = () => {
       </div>
       <div className="game-info">
         <GameStatus xIsNext={xIsNext} current={currentSquares} />
+
         <GameHistory history={history} jumpTo={jumpTo} />
       </div>
     </div>
