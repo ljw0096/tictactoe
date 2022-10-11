@@ -8,8 +8,8 @@ interface Props {
 
 const GameStatus = ({ xIsNext, current }: Props) => {
   const winner = calculateWinner(current)
-  let status = winner ? `Winner: ${winner}` : `Next Player: ${xIsNext ? "X" : "O"}`
-  return <div>{status}</div>
+
+  return <div>{winner ? `Winner: ${winner}` : `Next Player: ${xIsNext ? "X" : "O"}`}</div>
 }
 
 export default GameStatus
