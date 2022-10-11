@@ -2,6 +2,7 @@ import Board from "./Board"
 import { useState } from "react"
 import { calculateWinner } from "../utils/calculateWinner"
 import GameHistory from "./GameHistory"
+import GameStatus from "./GameStatus"
 
 const Game = () => {
   const [state, setState] = useState({
@@ -12,16 +13,16 @@ const Game = () => {
     ],
     stepNumber: 0,
     xIsNext: true,
+    winner: null,
   })
-  const current = state.history[state.history.length - 1]
-  const winner = calculateWinner(current.squares)
-  let status = winner ? `Winner: ${winner}` : `Next Player: ${state.xIsNext ? "X" : "O"}`
 
   const handleClick = (i: number) => {
     const history = state.history.slice(0, state.stepNumber + 1)
     const current = history[history.length - 1]
     const squares = current.squares.slice()
+
     if (calculateWinner(squares) || squares[i]) return
+
     squares[i] = state.xIsNext ? "X" : "O"
     setState({
       ...state,
@@ -30,6 +31,7 @@ const Game = () => {
       xIsNext: !state.xIsNext,
     })
   }
+
   const jumpTo = (step: number) => {
     setState({
       ...state,
@@ -38,14 +40,16 @@ const Game = () => {
     })
   }
 
-
   return (
     <div className="game">
       <div className="game-board">
         <Board squares={state.history[state.stepNumber].squares} onClick={handleClick} />
       </div>
       <div className="game-info">
-        <div>{status}</div>
+        <GameStatus
+          xIsNext={state.xIsNext}
+          current={state.history[state.history.length - 1].squares}
+        />
         <GameHistory history={state.history} jumpTo={jumpTo} />
       </div>
     </div>
