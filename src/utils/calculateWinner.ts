@@ -1,6 +1,6 @@
 import { SquareType } from "../interfaces"
 
-export function calculateWinner(squares: SquareType[]) {
+export const calculateWinner = (squares: SquareType[]) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -14,7 +14,7 @@ export function calculateWinner(squares: SquareType[]) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i]
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a]
+      return { winner: squares[0], winnerSquare: [a, b, c] }
     }
   }
   return null

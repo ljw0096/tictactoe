@@ -1,15 +1,12 @@
-import { SquareType } from "../interfaces"
-import { calculateWinner } from "../utils/calculateWinner"
+import { winnerType } from "../interfaces"
 
 interface Props {
   xIsNext: boolean
-  current: SquareType[]
+  winner: winnerType | null
 }
 
-const GameStatus = ({ xIsNext, current }: Props) => {
-  const winner = calculateWinner(current)
-
-  return <div>{winner ? `Winner: ${winner}` : `Next Player: ${xIsNext ? "X" : "O"}`}</div>
+const GameStatus = ({ xIsNext, winner }: Props) => {
+  return <div>{winner ? `Winner: ${winner.winner}` : `Next Player: ${xIsNext ? "X" : "O"}`}</div>
 }
 
 export default GameStatus

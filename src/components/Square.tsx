@@ -3,11 +3,12 @@ import { SquareType } from "../interfaces"
 interface Props {
   value: SquareType
   onClick: () => void
+  isWinnerSquare: boolean
 }
 
-const Square = ({ value, onClick }: Props) => {
+const Square = ({ value, onClick, isWinnerSquare }: Props) => {
   return (
-    <button className="square" onClick={onClick}>
+    <button className={`square${isWinnerSquare ? " winner" : ""}`} onClick={onClick}>
       {value}
     </button>
   )

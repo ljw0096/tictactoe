@@ -4,3 +4,8 @@ export interface HistoryType {
   squareNumber: number | null
   squareType: SquareType
 }
+
+export interface winnerType {
+  winner: SquareType
+  winnerSquare: number[]
+}

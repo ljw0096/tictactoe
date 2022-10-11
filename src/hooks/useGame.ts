@@ -50,6 +50,7 @@ const useGame = () => {
     stepNumber: state.stepNumber,
     xIsNext: state.xIsNext,
     currentSquares: state.history[state.stepNumber].squares,
+    winner: calculateWinner(state.history[state.stepNumber].squares),
     handleClick,
     jumpTo,
   }
