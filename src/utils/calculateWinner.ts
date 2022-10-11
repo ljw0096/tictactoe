@@ -1,6 +1,6 @@
-type Square = "X" | "O" | null
+import { SquareType } from "../interfaces"
 
-export function calculateWinner(squares: Square[]) {
+export function calculateWinner(squares: SquareType[]) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],

@@ -1,8 +1,4 @@
-type Square = "X" | "O" | null
-
-type HistoryType = {
-  squares: Square[]
-}
+import { HistoryType } from "../interfaces"
 
 interface Props {
   history: HistoryType[]
@@ -12,7 +8,7 @@ interface Props {
 const GameHistory = ({ history, jumpTo }: Props) => {
   return (
     <ol>
-      {history.map((step, move) => {
+      {history.map((_, move) => {
         const desc = move ? `Go to move #${move}` : `Go to game start`
         return (
           <li key={move}>

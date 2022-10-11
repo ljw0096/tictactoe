@@ -1,5 +1,7 @@
+import { SquareType } from "../interfaces"
+
 interface Props {
-  value: "X" | "O" | null
+  value: SquareType
   onClick: () => void
 }
 
