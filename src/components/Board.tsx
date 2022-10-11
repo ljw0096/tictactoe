@@ -8,32 +8,15 @@ interface Props {
 }
 
 const Board = ({ squares, onClick }: Props) => {
-  const renderSquare = (i: number) => (
-    <Square
-      value={squares[i]}
-      onClick={() => {
-        onClick(i)
-      }}
-    />
-  )
-
   return (
     <div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
+      {[0, 1, 2].map((row) => (
+        <div key={row} className="board-row">
+          {squares.slice(row * 3, row * 3 + 3).map((s, i) => (
+            <Square key={row * 3 + i} value={s} onClick={() => onClick(row * 3 + i)} />
+          ))}
+        </div>
+      ))}
     </div>
   )
 }
