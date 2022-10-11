@@ -1,11 +1,20 @@
 import { useState } from "react"
+import { HistoryType } from "../interfaces"
 import { calculateWinner } from "../utils/calculateWinner"
 
+interface State {
+  history: HistoryType[]
+  stepNumber: number
+  xIsNext: boolean
+}
+
 const useGame = () => {
-  const [state, setState] = useState({
+  const [state, setState] = useState<State>({
     history: [
       {
         squares: Array(9).fill(null),
+        squareNumber: null,
+        squareType: null,
       },
     ],
     stepNumber: 0,
@@ -22,7 +31,7 @@ const useGame = () => {
     squares[i] = state.xIsNext ? "X" : "O"
     setState({
       ...state,
-      history: history.concat([{ squares: squares }]),
+      history: [...history, { squares: squares, squareNumber: i, squareType: squares[i] }],
       stepNumber: history.length,
       xIsNext: !state.xIsNext,
     })

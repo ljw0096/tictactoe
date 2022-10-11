@@ -8,8 +8,8 @@ interface Props {
 const GameHistory = ({ history, jumpTo }: Props) => {
   return (
     <ol>
-      {history.map((_, move) => {
-        const desc = move ? `Go to move #${move}` : `Go to game start`
+      {history.map(({ squareType, squareNumber }, move) => {
+        const desc = move ? `'${squareType}' player put on ${squareNumber}` : `Go to game start`
         return (
           <li key={move}>
             <button onClick={() => jumpTo(move)}>{desc}</button>
