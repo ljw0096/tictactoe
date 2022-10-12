@@ -4,7 +4,7 @@ import GameStatus from "./GameStatus"
 import useGame from "../hooks/useGame"
 
 const Game = () => {
-  const { handleClick, currentSquares, xIsNext, history, jumpTo, winner } = useGame()
+  const { handleClick, stepNumber, currentSquares, xIsNext, history, jumpTo, winner } = useGame()
 
   return (
     <div className="game">
@@ -13,7 +13,7 @@ const Game = () => {
       </div>
       <div className="game-info">
         <GameStatus xIsNext={xIsNext} winner={winner} />
-        <GameHistory history={history} jumpTo={jumpTo} />
+        <GameHistory history={history} jumpTo={jumpTo} currentStep={stepNumber} />
       </div>
     </div>
   )

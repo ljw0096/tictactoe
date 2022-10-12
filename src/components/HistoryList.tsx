@@ -5,10 +5,12 @@ interface Props {
   history: HistoryType[]
   jumpTo: (i: number) => void
   reverse: boolean
+  currentStep: number
 }
 
-const HistoryList = ({ history, jumpTo, reverse }: Props) => {
+const HistoryList = ({ history, jumpTo, reverse, currentStep }: Props) => {
   const renderArray = reverse ? reverseArray(history) : history
+  const current = reverse ? renderArray.length - currentStep - 1 : currentStep
   return (
     <ol>
       {renderArray.map(({ squareType, squareNumber }, move) => {
@@ -18,7 +20,9 @@ const HistoryList = ({ history, jumpTo, reverse }: Props) => {
           : `Go to game start`
         return (
           <li key={move}>
-            <button onClick={() => jumpTo(step)}>{desc}</button>
+            <button className={current === move ? "currentStep" : ""} onClick={() => jumpTo(step)}>
+              {desc}
+            </button>
           </li>
         )
       })}
