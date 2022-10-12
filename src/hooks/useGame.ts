@@ -49,6 +49,7 @@ const useGame = () => {
     history: state.history,
     stepNumber: state.stepNumber,
     xIsNext: state.xIsNext,
+    draw: state.stepNumber === 9 && !calculateWinner(state.history[state.stepNumber].squares),
     currentSquares: state.history[state.stepNumber].squares,
     winner: calculateWinner(state.history[state.stepNumber].squares),
     handleClick,
