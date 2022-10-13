@@ -13,7 +13,7 @@ const GameHistory = ({ history, jumpTo, currentStep }: Props) => {
 
   return (
     <>
-      <button onClick={() => setToggle(!toggle)}>toggle</button>
+      <button onClick={() => setToggle(!toggle)}>{toggle ? "desc" : "asce"}</button>
       <HistoryList history={history} jumpTo={jumpTo} reverse={toggle} currentStep={currentStep} />
     </>
   )

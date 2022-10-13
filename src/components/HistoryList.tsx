@@ -1,3 +1,4 @@
+import styled from "styled-components"
 import { HistoryType } from "../interfaces"
 import { reverseArray } from "../utils/ArrayPure"
 
@@ -20,9 +21,9 @@ const HistoryList = ({ history, jumpTo, reverse, currentStep }: Props) => {
           : `Go to game start`
         return (
           <li key={move}>
-            <button className={current === move ? "currentStep" : ""} onClick={() => jumpTo(step)}>
+            <HistoryItem current={current === move} onClick={() => jumpTo(step)}>
               {desc}
-            </button>
+            </HistoryItem>
           </li>
         )
       })}
@@ -31,3 +32,10 @@ const HistoryList = ({ history, jumpTo, reverse, currentStep }: Props) => {
 }
 
 export default HistoryList
+
+const HistoryItem = styled.button<{ current: boolean }>`
+  background-color: ${({ current }) => (current ? "black" : "transparent")};
+  color: ${({ current }) => (current ? "white" : "black")};
+  border: none;
+  cursor: pointer;
+`
