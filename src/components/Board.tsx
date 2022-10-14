@@ -15,10 +15,11 @@ const Board = ({ squares, onClick, winner }: Props) => {
         <div key={rowIdx} className="board-row">
           {row.map((value, index) => (
             <Square
-              value={value}
               onClick={() => onClick(rowIdx * 3 + index)}
-              isWinnerSquare={winner ? winner.winnerSquare.includes(rowIdx * 3 + index) : false}
-            />
+              isWinner={winner ? winner.winnerSquare.includes(rowIdx * 3 + index) : false}
+            >
+              {value}
+            </Square>
           ))}
         </div>
       ))}

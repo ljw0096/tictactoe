@@ -2,23 +2,14 @@ import styled from "styled-components"
 import { SquareType } from "../interfaces"
 
 interface Props {
-  value: SquareType
+  children: SquareType
   onClick: () => void
-  isWinnerSquare: boolean
+  isWinner: boolean
 }
 
-const Square = ({ value, onClick, isWinnerSquare }: Props) => {
-  return (
-    <SquareItem className={`square${isWinnerSquare ? " winner" : ""}`} onClick={onClick}>
-      {value}
-    </SquareItem>
-  )
-}
-
-export default Square
-
-const SquareItem = styled.button`
-  background: #fff;
+const Square = styled.button<Props>`
+  background: ${({ isWinner }) => (isWinner ? "#000" : "#fff")};
+  color: ${({ isWinner }) => (isWinner ? "#fff" : "#000")};
   border: 1px solid #999;
   float: left;
   font-size: 96px;
@@ -31,3 +22,5 @@ const SquareItem = styled.button`
   text-align: center;
   width: 100px;
 `
+
+export default Square
