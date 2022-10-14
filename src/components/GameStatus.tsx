@@ -1,3 +1,4 @@
+import styled from "styled-components"
 import { winnerType } from "../interfaces"
 
 interface Props {
@@ -8,10 +9,15 @@ interface Props {
 
 const GameStatus = ({ xIsNext, winner, draw }: Props) => {
   return (
-    <div>
+    <StatusMessage>
       {draw ? "draw" : winner ? `Winner: ${winner.winner}` : `Next Player: ${xIsNext ? "X" : "O"}`}
-    </div>
+    </StatusMessage>
   )
 }
 
 export default GameStatus
+
+const StatusMessage = styled.div`
+  color: ${({ theme }) => theme.colors.baseGray};
+  font-size: ${({ theme }) => theme.fontSize.title}px;
+`
