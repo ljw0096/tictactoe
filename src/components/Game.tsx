@@ -1,19 +1,18 @@
 import Board from "./Board"
-import GameHistory from "./GameHistory"
 import GameStatus from "./GameStatus"
 import useGame from "../hooks/useGame"
 import styled from "styled-components"
 import GameInterface from "./GameInterface"
 
 const Game = () => {
-  const { handleClick, stepNumber, draw, currentSquares, xIsNext, history, jumpTo, winner } =
+  const { handleClick, draw, currentSquares, xIsNext, goFront, goBack, resetGame, winner } =
     useGame()
 
   return (
     <GameContainer>
       <GameStatus xIsNext={xIsNext} winner={winner} draw={draw} />
       <Board squares={currentSquares} onClick={handleClick} winner={winner} />
-      <GameInterface />
+      <GameInterface goFront={goFront} goBack={goBack} resetGame={resetGame} />
     </GameContainer>
   )
 }

@@ -1,12 +1,19 @@
 import styled from "styled-components"
 import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc"
 import { IoMdRefresh } from "react-icons/io"
-const GameInterface = () => {
+
+interface Props {
+  goFront: () => void
+  goBack: () => void
+  resetGame: () => void
+}
+
+const GameInterface = ({ goFront, goBack, resetGame }: Props) => {
   return (
     <InterfaceContainer>
-      <VscTriangleLeft></VscTriangleLeft>
-      <VscTriangleRight></VscTriangleRight>
-      <IoMdRefresh></IoMdRefresh>
+      <GoBackIcon onClick={goBack} />
+      <GoFrontIcon onClick={goFront} />
+      <ResetIcon onClick={resetGame} />
     </InterfaceContainer>
   )
 }
@@ -24,4 +31,14 @@ const InterfaceContainer = styled.div`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.baseGray};
   color: ${({ theme }) => theme.colors.mainBlack};
+`
+const GoBackIcon = styled(VscTriangleLeft)`
+  cursor: pointer;
+`
+
+const GoFrontIcon = styled(VscTriangleRight)`
+  cursor: pointer;
+`
+const ResetIcon = styled(IoMdRefresh)`
+  cursor: pointer;
 `

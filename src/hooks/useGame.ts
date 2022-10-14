@@ -37,11 +37,37 @@ const useGame = () => {
     })
   }
 
-  const jumpTo = (step: number) => {
+  const goFront = () => {
+    if (state.stepNumber === state.history.length - 1) {
+      return
+    }
     setState({
       ...state,
-      stepNumber: step,
-      xIsNext: step % 2 === 0,
+      stepNumber: state.stepNumber + 1,
+      xIsNext: (state.stepNumber + 1) % 2 === 0,
+    })
+  }
+  const goBack = () => {
+    if (state.stepNumber === 0) {
+      return
+    }
+    setState({
+      ...state,
+      stepNumber: state.stepNumber - 1,
+      xIsNext: (state.stepNumber - 1) % 2 === 0,
+    })
+  }
+  const resetGame = () => {
+    setState({
+      history: [
+        {
+          squares: Array(9).fill(null),
+          squareNumber: null,
+          squareType: null,
+        },
+      ],
+      stepNumber: 0,
+      xIsNext: true,
     })
   }
 
@@ -53,7 +79,9 @@ const useGame = () => {
     currentSquares: state.history[state.stepNumber].squares,
     winner: calculateWinner(state.history[state.stepNumber].squares),
     handleClick,
-    jumpTo,
+    goFront,
+    goBack,
+    resetGame,
   }
 }
 
