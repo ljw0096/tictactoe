@@ -1,3 +1,4 @@
+import styled from "styled-components"
 import { SquareType } from "../interfaces"
 
 interface Props {
@@ -8,10 +9,25 @@ interface Props {
 
 const Square = ({ value, onClick, isWinnerSquare }: Props) => {
   return (
-    <button className={`square${isWinnerSquare ? " winner" : ""}`} onClick={onClick}>
+    <SquareItem className={`square${isWinnerSquare ? " winner" : ""}`} onClick={onClick}>
       {value}
-    </button>
+    </SquareItem>
   )
 }
 
 export default Square
+
+const SquareItem = styled.button`
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 96px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 100px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 100px;
+`
