@@ -1,13 +1,22 @@
 import styled from "styled-components"
 import { SquareType } from "../interfaces"
-
+import { GrClose } from "react-icons/gr"
+import { BiCircle } from "react-icons/bi"
 interface Props {
-  children: SquareType
+  value: SquareType
   onClick: () => void
   isWinner: boolean
 }
 
-const Square = styled.button<Props>`
+const Square = ({ value, onClick, isWinner }: Props) => {
+  return (
+    <StyledSquare onClick={onClick} isWinner={isWinner}>
+      {value === "O" ? <BiCircle /> : value === "X" ? <GrClose /> : undefined}
+    </StyledSquare>
+  )
+}
+
+const StyledSquare = styled.button<{ isWinner: boolean }>`
   background: ${({ isWinner, theme }) =>
     isWinner ? theme.colors.mainBlack : theme.colors.baseGray};
   color: ${({ isWinner, theme }) => (isWinner ? theme.colors.baseGray : theme.colors.mainBlack)};

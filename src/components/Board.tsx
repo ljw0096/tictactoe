@@ -17,9 +17,8 @@ const Board = ({ squares, onClick, winner }: Props) => {
             <Square
               onClick={() => onClick(rowIdx * 3 + index)}
               isWinner={winner ? winner.winnerSquare.includes(rowIdx * 3 + index) : false}
-            >
-              {value}
-            </Square>
+              value={value}
+            />
           ))}
         </div>
       ))}
