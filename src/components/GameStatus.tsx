@@ -10,7 +10,7 @@ interface Props {
 const GameStatus = ({ xIsNext, winner, draw }: Props) => {
   return (
     <StatusMessage>
-      {draw ? "draw" : winner ? `Winner: ${winner.winner}` : `Next Player: ${xIsNext ? "X" : "O"}`}
+      {draw ? "Draw" : winner ? `${winner.winner} win!` : `${xIsNext ? "X" : "O"} turn`}
     </StatusMessage>
   )
 }

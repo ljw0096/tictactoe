@@ -1,4 +1,4 @@
-export type SquareType = "X" | "O" | null
+export type SquareType = "X" | "O" | undefined
 export interface HistoryType {
   squares: SquareType[]
   squareNumber: number | null

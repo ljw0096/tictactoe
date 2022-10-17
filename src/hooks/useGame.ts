@@ -14,7 +14,7 @@ const useGame = () => {
       {
         squares: Array(9).fill(null),
         squareNumber: null,
-        squareType: null,
+        squareType: undefined,
       },
     ],
     stepNumber: 0,
@@ -63,7 +63,7 @@ const useGame = () => {
         {
           squares: Array(9).fill(null),
           squareNumber: null,
-          squareType: null,
+          squareType: undefined,
         },
       ],
       stepNumber: 0,

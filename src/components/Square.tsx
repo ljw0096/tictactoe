@@ -10,15 +10,15 @@ interface Props {
 
 const Square = ({ value, onClick, isWinner }: Props) => {
   return (
-    <StyledSquare onClick={onClick} isWinner={isWinner}>
+    <StyledSquare onClick={onClick} isWinner={isWinner} value={value}>
       {value === "O" ? <BiCircle /> : value === "X" ? <GrClose /> : undefined}
     </StyledSquare>
   )
 }
 
-const StyledSquare = styled.button<{ isWinner: boolean }>`
+const StyledSquare = styled.button<{ isWinner: boolean; value: SquareType }>`
   background: ${({ isWinner, theme }) =>
-    isWinner ? theme.colors.mainBlack : theme.colors.baseGray};
+    isWinner ? theme.colors.accentBlue : theme.colors.baseGray};
   color: ${({ isWinner, theme }) => (isWinner ? theme.colors.baseGray : theme.colors.mainBlack)};
   border: 1px solid #999;
   border-radius: 10px;
@@ -32,8 +32,10 @@ const StyledSquare = styled.button<{ isWinner: boolean }>`
   padding: 0;
   text-align: center;
   width: 100px;
+
   :hover {
-    background-color: ${({ theme }) => theme.colors.accentGreen};
+    ${({ theme, value, isWinner }) =>
+      !isWinner && !value && `background-color: ${theme.colors.accentGreen}`}
   }
 `
 
